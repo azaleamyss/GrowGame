@@ -9,71 +9,66 @@ import org.xml.sax.SAXException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 public class LogController {
-	private static File warehouseXml;
+    public static final int STORAGE = 1;
+    public static final int FIELD = 2;
+	private static File storageXml;
 	private static File fieldXml;
-	private static File userXml;
-	private static Document warehouseLog;
+	private static Document storageLog;
 	private static Document fieldLog;
-	private static Document userLog;
-	private static NodeList warehouseChildNodes;
+	private static NodeList storageChildNodes;
 	private static NodeList fieldsChildNodes;
-	private static NodeList userChildNodes;
-	private static ArrayList<ArrayList<String>> warehouseLogList;
+	private static ArrayList<ArrayList<String>> storageLogList;
 	private static ArrayList<ArrayList<String>> fieldLogList;
-	private static ArrayList<ArrayList<String>> userLogList;
 	private DocumentBuilder docBuilder;
 
 	LogController(){
 		xmlInit();
-		warehouseLogList = convertXmldocIntoStringList(warehouseChildNodes);
-		fieldLogList = convertXmldocIntoStringList(fieldsChildNodes);
-		userLogList = convertXmldocIntoStringList(userChildNodes);
+		storageLogList = convertXmlIntoString(storageChildNodes);
+		fieldLogList = convertXmlIntoString(fieldsChildNodes);
 	}
 
     /*ログの取得*/
-	public ArrayList<String> getWarehouseLog(String nodeName){
+	public ArrayList<String> getStorageLog(String nodeName){
 		if(nodeName.equals("drinks")){
-			return warehouseLogList.get(0);
+			return storageLogList.get(0);
 		}else if(nodeName.equals("seeds")){
-			return warehouseLogList.get(1);
-		}else if(nodeName.equals("callots")){
-			return warehouseLogList.get(2);
-		}
+			return storageLogList.get(1);
+		}else if(nodeName.equals("carrots")){
+			return storageLogList.get(2);
+		}else if(nodeName.equals("money")){
+            return storageLogList.get(3);
+        }
 		return null;
 	}
-    //enum
-	public ArrayList<String> getFieldLog(int fieldPos){
-		return fieldLogList.get(fieldPos-1);
+	public ArrayList<String> getFieldLog(FieldPos pos){
+		return fieldLogList.get(pos.ordinal());
 	}
-	public ArrayList<String> getUserLog(String nodeName){
-		if(nodeName.equals("money")){
-			return userLogList.get(0);
-		}
-		return null;
+	public ArrayList<String> getFieldLog(String nodeName){
+        if(nodeName.equals("date")){
+            return fieldLogList.get(6);
+        }
+        return null;
 	}
 
     /*ログのセット*/
-    public void setWarehouseLog(ArrayList<ArrayList<String>> newLog){
-        warehouseLogList = newLog;
+    public void setStorageLog(ArrayList<ArrayList<String>> newLog){
+        storageLogList = newLog;
     }
     public void setFieldLog(ArrayList<ArrayList<String>> newLog){
         fieldLogList = newLog; 
     }
-    public void setUserLog(ArrayList<ArrayList<String>> newLog){
-        userLogList = newLog;
-    } 
 
 
     /*ログの更新*/
-	public boolean updateWarehouseLog(){
+	public boolean updateStorageLog(){
 		ArrayList<String> outStringList;
 		NodeList outNodeList;
 
 		int j=0;
-		for(int i=0; i<warehouseChildNodes.getLength(); i++){
-			Node nc = warehouseChildNodes.item(i);
+		for(int i=0; i<storageChildNodes.getLength(); i++){
+			Node nc = storageChildNodes.item(i);
 			if(nc.getNodeType()==Node.ELEMENT_NODE){
-				outStringList = warehouseLogList.get(j);
+				outStringList = storageLogList.get(j);
 				j++;
 				outNodeList = nc.getChildNodes();
 				int n=0;
@@ -95,7 +90,7 @@ public class LogController {
 			}
 		}
 
-		write(warehouseXml,warehouseLog);
+		write(storageXml,storageLog);
 		return true;
 	}
 	public boolean updateFieldLog(){
@@ -136,87 +131,47 @@ public class LogController {
 		write(fieldXml,fieldLog);
 		return true;
 	}
-	public boolean updateUserLog(){
-		ArrayList<String> outStringList;
-		NodeList outNodeList;
 
-		int j=0;
-		for(int i=0; i<userChildNodes.getLength(); i++){
-			Node nc = userChildNodes.item(i);
-			if(nc.getNodeType()==Node.ELEMENT_NODE){
-				outStringList = userLogList.get(j);
-                NodeList ncChildList = nc.getChildNodes();
-                int n = 0;
-                for(int k=0; k<ncChildList.getLength(); k++){
-                    Node ng = ncChildList.item(k);
-                    if(ng.getNodeType()==Node.ELEMENT_NODE){
-                        ng.getFirstChild().setNodeValue(outStringList.get(n));
-                        System.out.println("uselog: "+ng.getTextContent());
-                        n++;
-                    }else if(ng.getNodeType()==Node.TEXT_NODE){
-                        if(!ng.getNodeValue().equals(null) && !ng.getNodeValue().equals("\n")){
-                            ng.setNodeValue(outStringList.get(n));
-                            System.out.println("uselog: "+ng.getTextContent());
-                            n++;
+    //xmlドキュメント→ 文字列リストに変換
+    private ArrayList<ArrayList<String>> convertXmlIntoString(NodeList rootChildNodes){
+        ArrayList<ArrayList<String>> log = new ArrayList<ArrayList<String>>();
+        int j = 0;
+        for(int i=0; i<rootChildNodes.getLength(); i++){
+            Node nc = rootChildNodes.item(i);
+            if(nc.getNodeType() == Node.ELEMENT_NODE){
+                j++;
+                NodeList ncNodeList = nc.getChildNodes();
+                ArrayList<String> sub = new ArrayList<String>();
+                for(int k=0; k<ncNodeList.getLength(); k++){
+                    Node ng = ncNodeList.item(k);
+                    if(ng.getNodeType() == Node.ELEMENT_NODE){
+                        NodeList ngNodeList = ng.getChildNodes();
+                        for(int m=0; m<ngNodeList.getLength(); m++){
+                            Node ngg = ngNodeList.item(m);
+                            if(ngg.getNodeType() == Node.ELEMENT_NODE){
+                                String text = ngg.getFirstChild().getNodeValue();
+                                sub.add(text);
+                            }else if(ngg.getNodeType() == Node.TEXT_NODE){
+                                if(!ngg.getTextContent().equals("\n") && !ngg.getTextContent().equals(null)){
+                                    String text = ngg.getNodeValue();
+                                    sub.add(text);
+                                }
+                            }
+
                         }
-                    }  
+
+                    }else if(ng.getNodeType() == Node.TEXT_NODE){
+                        if(!ng.getTextContent().equals("\n") && !ng.getTextContent().equals(null)){
+                            String text = ng.getNodeValue();
+                            sub.add(text);
+                        }
+                    }
                 }
-				j++;
-			}
-		}
-		write(userXml,userLog);
-
-		return true;
-	}
-
-    /*xmlの内容を文字列のリストに変換*/
-	private ArrayList<ArrayList<String>> convertXmldocIntoStringList(NodeList rootChildNodes){
-		ArrayList<ArrayList<String>> logList = new ArrayList<ArrayList<String>>();
-		for(int i=0; i<rootChildNodes.getLength(); i++){
-			Node nc = rootChildNodes.item(i);
-			ArrayList<String> sub = new ArrayList<String>();
-			if(nc.getNodeType()==Node.ELEMENT_NODE){
-
-				if(nc.hasChildNodes()){
-					NodeList gChildNodes = nc.getChildNodes();
-					for(int j=0; j<gChildNodes.getLength(); j++){
-						Node ng = gChildNodes.item(j);
-
-						if(ng.hasChildNodes()){
-							NodeList ggChildNodes = ng.getChildNodes();
-							for(int k=0; k<ggChildNodes.getLength(); k++){
-								Node ngg = ggChildNodes.item(k);
-								if(canReadValue(ngg)){
-									sub.add(ngg.getTextContent());
-								}
-							}
-						}else{
-							if(canReadValue(ng)){
-								sub.add(ng.getTextContent());
-							}
-						}
-					}
-				}else{
-					if(canReadValue(nc)){
-						sub.add(nc.getTextContent());
-					}
-				}
-				logList.add(sub);
-
-			}
-		}
-		return logList;
-	}
-
-
-	private boolean canReadValue(Node theNode){
-		if(theNode.getNodeType()==Node.ELEMENT_NODE || theNode.getNodeType()==Node.TEXT_NODE){
-			if(!theNode.getTextContent().equals("¥n") && !theNode.getTextContent().equals(null)){
-				return true;
-			}
-		}
-		return false;
-	}
+                log.add(sub);
+            }
+        }
+        return log;
+    }
 
 
     /*xmlをメモリに展開*/
@@ -231,26 +186,26 @@ public class LogController {
 		Node root;
 
         //倉庫xml
-		warehouseXml = new File("warehouseLog.xml");
-		if(!warehouseXml.exists()){
+		storageXml = new File("storageLog.xml");
+		if(!storageXml.exists()){
 			try{
-			warehouseXml.createNewFile();
-			setDefoElem(warehouseXml,LogType.WAREHOUSE);
+			storageXml.createNewFile();
+			setDefoElem(storageXml,STORAGE);
 			}catch(IOException e){
 				e.printStackTrace();
 			}
 		}else{
-			warehouseLog = loadLog(warehouseXml);
+			storageLog = loadLog(storageXml);
 		}
-		root = warehouseLog.getDocumentElement();
-		warehouseChildNodes = root.getChildNodes();
+		root = storageLog.getDocumentElement();
+		storageChildNodes = root.getChildNodes();
 
         //畑xml
 		fieldXml = new File("fieldLog.xml");
 		if(!fieldXml.exists()){
 			try{
 				fieldXml.createNewFile();
-				setDefoElem(fieldXml,LogType.FIELD);
+				setDefoElem(fieldXml,FIELD);
 			}catch(IOException e){
 				e.printStackTrace();
 			}
@@ -259,60 +214,52 @@ public class LogController {
 		}
 		root = fieldLog.getDocumentElement();
 		fieldsChildNodes = root.getChildNodes();
-
-        //ユーザxml
-		userXml = new File("userLog.xml");
-		if(!userXml.exists()){
-			try{
-				userXml.createNewFile();
-				setDefoElem(userXml,LogType.USER);
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		}else{
-			userLog = loadLog(userXml);
-		}
-		root = userLog.getDocumentElement();
-		userChildNodes = root.getChildNodes();
 	}
 
 
     /*初期xml生成*/
-	private void setDefoElem(File logFile, LogType logType){
+	private void setDefoElem(File logFile, int logType){
 		Element root=null;
 		switch(logType){
-			case WAREHOUSE:
-				warehouseLog = docBuilder.newDocument(); 
+			case STORAGE:
+				storageLog = docBuilder.newDocument(); 
 
-				root = warehouseLog.createElement("warehouse"); 
-				warehouseLog.appendChild(root);
+				root = storageLog.createElement("storage"); 
+				storageLog.appendChild(root);
 
                 //drinks要素
-				Element drinks = warehouseLog.createElement("drinks");
+				Element drinks = storageLog.createElement("drinks");
 				root.appendChild(drinks);
 				for(DrinkType type: DrinkType.values()){
-					Element drink = warehouseLog.createElement("drink");
-					drink.setAttribute("name",type.name());
-					drink.appendChild(warehouseLog.createTextNode("0"));
-					drinks.appendChild(drink);
+                    if(type != DrinkType.NONE){
+                        Element drink = storageLog.createElement("drink");
+                        drink.setAttribute("name",type.name());
+                        drink.appendChild(storageLog.createTextNode("0"));
+                        drinks.appendChild(drink);
+                    }
 				}
 
                 //seeds要素
-				Element seeds = warehouseLog.createElement("seeds");
-				seeds.appendChild(warehouseLog.createTextNode("0"));
+				Element seeds = storageLog.createElement("seeds");
+				seeds.appendChild(storageLog.createTextNode("0"));
 				root.appendChild(seeds);
 
-                //callots要素
-				Element callots = warehouseLog.createElement("callots");
-				root.appendChild(callots);
-				for(CallotColor color: CallotColor.values()){
-					Element callot= warehouseLog.createElement("callot");
-					callot.setAttribute("color",color.name());
-					callot.appendChild(warehouseLog.createTextNode("0"));
-					callots.appendChild(callot);
+                //carrots要素
+				Element carrots = storageLog.createElement("carrots");
+				root.appendChild(carrots);
+				for(CarrotType type: CarrotType.values()){
+					Element carrot= storageLog.createElement("carrot");
+					carrot.setAttribute("type",type.name());
+					carrot.appendChild(storageLog.createTextNode("0"));
+					carrots.appendChild(carrot);
 				}
 
-				write(logFile,warehouseLog);
+                //money要素
+				Element money = storageLog.createElement("money");
+				money.appendChild(storageLog.createTextNode("0"));
+				root.appendChild(money);
+
+				write(logFile,storageLog);
 				break;
 
 			case FIELD:
@@ -321,68 +268,53 @@ public class LogController {
 				root = fieldLog.createElement("fields"); 
 				fieldLog.appendChild(root);
 
-				for(int i=1; i<7; i++){
+                //各フィールド
+				for(FieldPos pos: FieldPos.values()){
 
                     //畑要素
 					Element field = fieldLog.createElement("field");
-					field.setAttribute("position",i+"");
+					field.setAttribute("position",pos.name());
 					root.appendChild(field);
 
-                    //畑の水分要素
-					Element moisture = fieldLog.createElement("moisture");
-					moisture.appendChild(fieldLog.createTextNode("0"));
-					field.appendChild(moisture);
+                    //飲み物要素
+					Element drink = fieldLog.createElement("drink");
+					drink.appendChild(fieldLog.createTextNode(DrinkType.NONE.name()));
+					field.appendChild(drink);
 
-                    //畑の養分要素
-					Element nutrition = fieldLog.createElement("nutrition");
-					nutrition.appendChild(fieldLog.createTextNode("0"));
-					field.appendChild(nutrition);
-
-                    //callot要素
-					Element callot= fieldLog.createElement("callot");
-
-					Element gainedMoisture = fieldLog.createElement("gainedmoisture"); 
-					gainedMoisture.appendChild(fieldLog.createTextNode("0"));
-					callot.appendChild(gainedMoisture);
-
-					Element gainedNutrition = fieldLog.createElement("gainednutrition");
-					gainedNutrition.appendChild(fieldLog.createTextNode("0"));
-					callot.appendChild(gainedNutrition);
-
+                    //経過時間要素
 					Element time = fieldLog.createElement("time");
 					time.appendChild(fieldLog.createTextNode("0"));
-					callot.appendChild(time);
+					field.appendChild(time);
 
-					field.appendChild(callot);
+                    //carrot要素
+					Element carrot= fieldLog.createElement("carrot");
+                    for(DrinkType drinkType: DrinkType.values()){
+                        if(drinkType != DrinkType.NONE){
+                            Element gainedDrink = fieldLog.createElement("gaineddrink"); 
+                            gainedDrink.setAttribute("type",drinkType.name());
+                            gainedDrink.appendChild(fieldLog.createTextNode("0"));
+                            carrot.appendChild(gainedDrink);
+                        }
+                    }
+					field.appendChild(carrot);
 				}
-
-				write(logFile,fieldLog);
-				break;
-
-		    case USER:
-				userLog = docBuilder.newDocument(); 
-
-				root = userLog.createElement("user"); 
-				userLog.appendChild(root);
-				Element money = userLog.createElement("money");
-				money.appendChild(userLog.createTextNode("0"));
-				root.appendChild(money);
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
                 String nowDateText = sdf.format(new Date());
                 String[] nowDate = nowDateText.split("-"); 
 
-                Element date = userLog.createElement("date");
-                Element year = userLog.createElement("year");
-                Element month = userLog.createElement("month");
-                Element day = userLog.createElement("day");
-                Element hour = userLog.createElement("hour");
-                Element minute = userLog.createElement("minute");
-				year.appendChild(userLog.createTextNode(nowDate[0]));
-				month.appendChild(userLog.createTextNode(nowDate[1]));
-				day.appendChild(userLog.createTextNode(nowDate[2]));
-				hour.appendChild(userLog.createTextNode(nowDate[3]));
-				minute.appendChild(userLog.createTextNode(nowDate[4]));
+                //日付(ゲーム終了時)
+                Element date = fieldLog.createElement("date");
+                Element year = fieldLog.createElement("year");
+                Element month = fieldLog.createElement("month");
+                Element day = fieldLog.createElement("day");
+                Element hour = fieldLog.createElement("hour");
+                Element minute = fieldLog.createElement("minute");
+				year.appendChild(fieldLog.createTextNode(nowDate[0]));
+				month.appendChild(fieldLog.createTextNode(nowDate[1]));
+				day.appendChild(fieldLog.createTextNode(nowDate[2]));
+				hour.appendChild(fieldLog.createTextNode(nowDate[3]));
+				minute.appendChild(fieldLog.createTextNode(nowDate[4]));
 				date.appendChild(year);
 				date.appendChild(month);
 				date.appendChild(day);
@@ -390,10 +322,7 @@ public class LogController {
 				date.appendChild(minute);
 				root.appendChild(date);
 
-				write(logFile,userLog);
-				break;
-
-			default:
+				write(logFile,fieldLog);
 				break;
 		}
 	}

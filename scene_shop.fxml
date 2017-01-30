@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShopSceneController">
+  <children>
+    <VBox prefHeight="501.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Button mnemonicParsing="false" onAction="#goToHatake" prefHeight="25.0" prefWidth="72.0" text="戻る" />
+            <Label prefHeight="119.0" prefWidth="396.0" text="Shop">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+      </children>
+    </VBox>
+      <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="80.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="148.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="215.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="282.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
+  </children>
+</AnchorPane>

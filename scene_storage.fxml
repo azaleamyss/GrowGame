@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StorageSceneController">
+  <children>
+    <VBox prefHeight="153.0" prefWidth="174.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Button mnemonicParsing="false" onAction="#goToHatake" prefHeight="25.0" prefWidth="73.0" text="戻る" />
+            <Label prefHeight="168.0" prefWidth="329.0" text="Storage">
+               <font>
+                  <Font size="53.0" />
+               </font>
+            </Label>
+      </children>
+    </VBox>
+      <Button layoutX="292.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="225.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="158.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="90.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="24.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
+  </children>
+</AnchorPane>
