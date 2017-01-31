@@ -13,6 +13,13 @@ import javafx.fxml.FXML;
 import java.util.ArrayList;
 
 public class StorageSceneController extends GrowGameController implements Initializable,ControlledScreen {
+    public enum Item{
+        CARROT,
+        DRINK,
+        SEED,
+        MONEY;
+    }
+
     ScreensController myController;
 
     @FXML private Label dispLabel1;
@@ -31,10 +38,8 @@ public class StorageSceneController extends GrowGameController implements Initia
         ArrayList<String> drinkLog = logController.getStorageLog("drinks");
         ArrayList<String> seedsLog = logController.getStorageLog("seeds");
         ArrayList<String> moneyLog = logController.getStorageLog("money");
-        int seeds = Integer.parseInt(seedsLog.get(0));
-        int money = Integer.parseInt(moneyLog.get(0));
 
-        storage = new Storage(callotLog,drinkLog,seeds,money);
+        storage = new Storage(callotLog,drinkLog,seedsLog,moneyLog);
     }
 
     @Override
@@ -52,18 +57,31 @@ public class StorageSceneController extends GrowGameController implements Initia
 
     @FXML
     private void dispDrinkButtonAction(ActionEvent event){
-        disp(storage.getStoredDrinks());
+        ArrayList<String> itemList;
+        for(DrinkType drink: DrinkType.values()){
+            if(drink!=DrinkType.NONE){
+                itemList.add(drink.name());
+            }
+        } 
+        disp(storage.getStoredDrinks(),itemList);
     }
     @FXML
     private void dispSeedsButtonAction(ActionEvent event){
-        disp(storage.getStoredSeeds());
+        disp(storage.getStoredSeeds(),Item.SEED);
     }
     @FXML
     private void dispCarrotButtonAction(ActionEvent event){
-        disp(storage.getStoredCarrots());
+        disp(storage.getStoredCarrots(),Item.CARROT);
+    }
+    @FXML
+    private void dispMoneyButtonAction(ActionEvent event){
+        disp(storage.getStoredMoney(),Item.MONEY);
     }
 
     //在庫を表示(0個のものは表示されない)
-    private void disp(ArrayList<String> list){
+    private void disp(ArrayList<String> storedItemNum, ArrayList<String> itemName){
+        for(String s: itemName){
+
+        }
     }
 }

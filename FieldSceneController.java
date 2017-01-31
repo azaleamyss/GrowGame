@@ -63,25 +63,6 @@ public class FieldSceneController extends GrowGameController implements Initiali
         myController = screenParent;
     }
 
-    /*
-    public void exitButtonAction(){
-        //ログ出力
-        ArrayList<ArrayList<String>> log;
-
-        log = storage.getLog();
-        logController.setStorageLog(log);
-        logController.updateStorageLog();
-
-        log = null;
-        for(Field f: fieldArea){
-            log.add(f.getLog());
-        }
-        logController.setFieldLog(log);
-        logController.updateFieldLog();
-
-        System.exit(0);
-    }
-    */
     
     @FXML
     private void goToShop(ActionEvent event){

@@ -23,7 +23,6 @@ public class Field{
     }
 
     public ArrayList<String> getLog(){
-        /*未実装*/
         return null;
     }
 

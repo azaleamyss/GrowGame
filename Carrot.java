@@ -11,7 +11,7 @@ public class Carrot{
         this.isrotten = isrotten; 
     }
 
-    //人参の成長条件定義用
+    //人参の成長条件定義用(→ enumに変更)
     Carrot(CarrotType type, int water, int tea, int shoyu, int milk, int cola, int veer, int wine){
         this.type = type;
         condition = new int[DrinkType.values().length-1];

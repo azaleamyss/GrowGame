@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 public class GrowGameController{ 
+    //他コントローラで利用しないものはこのフィールドから消します
     protected static ArrayList<Field> fieldArea;
     protected static Shop shop;
     protected static Storage storage;
     protected static GrowthCondition growthCondition;
     protected static LogController logController;
     protected static ArrayList<String> date;
+    protected static PictureBook picBook;
 
     static{
         logController = new LogController();
@@ -18,7 +20,7 @@ public class GrowGameController{
         return dispdate;
     }
 
-    public void exit(){
+    protected void exit(){
         //ログ出力
         ArrayList<ArrayList<String>> newlog;
 
