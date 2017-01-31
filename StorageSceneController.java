@@ -15,6 +15,16 @@ import java.util.ArrayList;
 public class StorageSceneController extends GrowGameController implements Initializable,ControlledScreen {
     ScreensController myController;
 
+    @FXML private Label dispLabel1;
+    @FXML private Label dispLabel2;
+    @FXML private Label dispLabel3;
+    @FXML private Label dispLabel4;
+    @FXML private Label dispLabel5;
+    @FXML private Label dispLabel6;
+    @FXML private Label dispLabel7;
+
+    private Label[] dispLabels;
+
     static{
         //取得したログから倉庫インスタンス生成
         ArrayList<String> callotLog = logController.getStorageLog("callots");
@@ -38,5 +48,22 @@ public class StorageSceneController extends GrowGameController implements Initia
     @FXML
     private void goToHatake(ActionEvent event){
        myController.setScreen(GrowGame.screen1ID);
+    }
+
+    @FXML
+    private void dispDrinkButtonAction(ActionEvent event){
+        disp(storage.getStoredDrinks());
+    }
+    @FXML
+    private void dispSeedsButtonAction(ActionEvent event){
+        disp(storage.getStoredSeeds());
+    }
+    @FXML
+    private void dispCarrotButtonAction(ActionEvent event){
+        disp(storage.getStoredCarrots());
+    }
+
+    //在庫を表示(0個のものは表示されない)
+    private void disp(ArrayList<String> list){
     }
 }

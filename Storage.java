@@ -1,20 +1,36 @@
 import java.util.ArrayList;
 public class Storage{
-    private int seeds;
-    private int money;
-    Storage(ArrayList<String> carrots, ArrayList<String> drinks, int seeds, int money){
-        this.seeds = seeds;
-        this.money = money;
-        System.out.println("Storage未実装");
+    private ArrayList<String> storedDrinks;
+    private ArrayList<String> storedCarrots;
+    private ArrayList<String> storedSeeds;
+    private ArrayList<String> storedMoney;
+
+    Storage(ArrayList<String> carrots, ArrayList<String> drinks, ArrayList<String> seeds, ArrayList<String> money){
     }
-    public void setLog(){
+
+    public void setStoredCarrots(){
     }
-    public ArrayList<ArrayList<String>> getLog(){
+    public void setStoredSeeds(){
+    }
+    public void setStoredDrinks(){
+    }
+    public void setStoredMoney(){
+    }
+
+    public ArrayList<String> getStoredCarrots(){
         return null;
     }
-    public void add(){
+    public ArrayList<String> getStoredSeeds(){
+        return null;
     }
-    public int getSeeds(){
-        return seeds;
+    public ArrayList<String> getStoredDrinks(){
+        return null;
+    }
+    public ArrayList<String> getStoredMoney(){
+        return null;
+    }
+
+    public ArrayList<ArrayList<String>> getLog(){
+        return null;
     }
 }
