@@ -26,6 +26,19 @@ public class FieldSceneController extends GrowGameController implements Initiali
 
     @FXML
     private Label dateLabel;//畑画面左上に表示したいです
+    @FXML
+    private ImageView weatherImageView;
+    @FXML
+    private ImageView drinkImageView;
+
+    @FXML private ImageView fieldTopLeft;
+    @FXML private ImageView fieldTopCenter;
+    @FXML private ImageView fieldTopRight;
+    @FXML private ImageView fieldUnderLeft;
+    @FXML private ImageView fieldUnderCenter;
+    @FXML private ImageView fieldUnderRight;
+
+    private ImageView[] fieldAreaView;
 
     ScreensController myController;
 
@@ -54,8 +67,6 @@ public class FieldSceneController extends GrowGameController implements Initiali
         }));
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
-        System.out.println("FieldSceneControllerほぼ未実装");     
-
     }
 
 
@@ -63,6 +74,13 @@ public class FieldSceneController extends GrowGameController implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ArrayList<String> date = getNowDate();
+        fieldAreaView = new ImageView();
+        fieldAreaView[0] = fieldTopLeft;
+        fieldAreaView[1] = fieldTopCenter;
+        fieldAreaView[2] = fieldTopRight;
+        fieldAreaView[3] = fieldUnderLeft;
+        fieldAreaView[4] = fieldUnderCenter;
+        fieldAreaView[5] = fieldUnderRight;
         //dateLabel.setText(date.get(1)+"月 "+date.get(2)+"日");
     }
 
@@ -137,6 +155,15 @@ public class FieldSceneController extends GrowGameController implements Initiali
     }
 
     private void sow(FieldPos pos){
+        int rest = Integer.parseInt(storage.getStoredSeeds().get(0)) -1;
+        if(rest < 0){
+            rest = 0;
+        }
+        storage.setStoredSeeds(storage.getStoredSeeds().set(0,rest));
+        Field field = fieldArea.get(pos.id());
+        field.setNewCarrot();//畑を再構築しない場合
+        //fieldArea.set(pos.id(), new Field());//再構築する場合
+        changeImage(field,pos);
     }
     private void pour(FieldPos pos){
         //まず選択した飲み物の種類を取得する
@@ -145,6 +172,32 @@ public class FieldSceneController extends GrowGameController implements Initiali
     }
 
     //畑の画像が変わる
-    private void changeImage(FieldPos pos){
+    private void changeFieldImage(Field field, FieldPos pos){
+        if(field.getPassedTime() < 2){
+            //植えたて
+            fieldAreaView[pos.id()].setImage("image/veg/uetate.png");
+        }else if(field.getPassedTime() < 6){
+            //芽
+            fieldAreaView[pos.id()].setImage("image/veg/hatuga.png");
+            if(field.getCarrot().hasEvolved()){
+                sleep(500);
+                fieldAreaView[pos.id()].setImage("image/veg/uetate.png");
+                sleep(500);
+                fieldAreaView[pos.id()].setImage("image/veg/hatuga.png");
+                sleep(500);
+                field.getCarrot().evolve(false);
+            }
+        }else{
+            //leaf.png
+            fieldAreaView[pos.id()].setImage("image/veg/leaf.png");
+            if(field.getCarrot().hasEvolved()){
+                sleep(500);
+                fieldAreaView[pos.id()].setImage("image/veg/hatuga.png");
+                sleep(500);
+                fieldAreaView[pos.id()].setImage("image/veg/leaf.png");
+                sleep(500);
+                field.getCarrot().evolve(false);
+            }
+        } 
     }
 }

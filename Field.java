@@ -5,6 +5,7 @@ public class Field{
     private DrinkType currentDrink;
     private int passedTime;
     
+    //前の畑の状態を受け継ぐなら畑インスタンスの追加の生成は行わない
     Field(ArrayList<String> log){
         this.currentDrink = DrinkType.valueOf(log.get(0));
         this.passedTime = Integer.parseInt(log.get(1));
@@ -17,12 +18,12 @@ public class Field{
         carrot = new Carrot(type,gainedDrinks);
     }
 
-    public ArrayList<String> getLog(){
-        return null;
+    public void setNewCarrot(){
+        int[] initCondition = {0,0,0,0,0,0,0};
+        this.carrot = new Carrot(CarrotType.ORANGE,initCondition);
     }
 
     //時間に合わせて処理
-    //引数 int fold: 倍率
     //5分ごとに実行される
     public void passTime(){
         if(ROT_TIME < passedTime){
@@ -44,5 +45,21 @@ public class Field{
         carrot.gain(currentDrink);
         passedTime += 5;
         currentDrink = null;
+    }
+
+    public ArrayList<String> getLog(){
+        ArrayList<String> log = new ArrayList<String>();
+        log.add(this.currentDrink.name());
+        log.add(this.passedTime+"");
+        log.add(this.carrot.name());
+        int[] carrCondition = carrot.getCondition();
+        for(int i=0; i<carrCondition.length(); i++){
+            log.add(carrCondition[i]+"");
+        }
+        return log;
+    }
+
+    public int getPassedTime(){
+        return this.passedTime;
     }
 }
