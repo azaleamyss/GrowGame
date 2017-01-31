@@ -13,12 +13,6 @@ import javafx.fxml.FXML;
 import java.util.ArrayList;
 
 public class StorageSceneController extends GrowGameController implements Initializable,ControlledScreen {
-    public enum Item{
-        CARROT,
-        DRINK,
-        SEED,
-        MONEY;
-    }
 
     ScreensController myController;
 
@@ -44,6 +38,14 @@ public class StorageSceneController extends GrowGameController implements Initia
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dispLabels = new Label[7];
+        dispLabels[0] = dispLabel1;
+        dispLabels[1] = dispLabel2;
+        dispLabels[2] = dispLabel3;
+        dispLabels[3] = dispLabel4;
+        dispLabels[4] = dispLabel5;
+        dispLabels[5] = dispLabel6;
+        dispLabels[6] = dispLabel7;
     }    
     
     public void setScreenParent(ScreensController screenParent){
@@ -57,21 +59,15 @@ public class StorageSceneController extends GrowGameController implements Initia
 
     @FXML
     private void dispDrinkButtonAction(ActionEvent event){
-        ArrayList<String> itemList;
-        for(DrinkType drink: DrinkType.values()){
-            if(drink!=DrinkType.NONE){
-                itemList.add(drink.name());
-            }
-        } 
-        disp(storage.getStoredDrinks(),itemList);
-    }
-    @FXML
-    private void dispSeedsButtonAction(ActionEvent event){
-        disp(storage.getStoredSeeds(),Item.SEED);
+        disp(storage.getStoredDrinks(),Item.DRINK);
     }
     @FXML
     private void dispCarrotButtonAction(ActionEvent event){
         disp(storage.getStoredCarrots(),Item.CARROT);
+    }
+    @FXML
+    private void dispSeedsButtonAction(ActionEvent event){
+        disp(storage.getStoredSeeds(),Item.SEED);
     }
     @FXML
     private void dispMoneyButtonAction(ActionEvent event){
@@ -79,9 +75,27 @@ public class StorageSceneController extends GrowGameController implements Initia
     }
 
     //在庫を表示(0個のものは表示されない)
-    private void disp(ArrayList<String> storedItemNum, ArrayList<String> itemName){
-        for(String s: itemName){
+    private void disp(ArrayList<String> storedItemNum, Item item){
+        for(int i=0; i<7; i++){
+            dispLabels[i].setOpacity(0.0d);
+        }
 
+        int i = 0;
+        String text = "";
+        for(String s: storedItemNum){
+            if(item == Item.MONEY || item == Item.SEED){
+                text = item.name() + "・・・"+ s +" "+item.unit();
+            }else if(item == Item.CARROT){
+                text = CarrotType.get(i).name() + "・・・" + storedItemNum.get(i) +" "+ item.unit();
+            }else if(item == Item.DRINK){
+                text = DrinkType.get(i).name() + "・・・" + storedItemNum.get(i) +" "+ item.unit();
+            }
+
+            if(!s.equals("0") || item == Item.MONEY || item == Item.SEED){
+                dispLabels[i].setText(text);
+                dispLabels[i].setOpacity(0.7d);
+                i++;
+            }
         }
     }
 }

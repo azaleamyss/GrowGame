@@ -35,11 +35,11 @@ public class PicBookSceneController extends GrowGameController implements Initia
     //見たい種類(飲み物図鑑かにんじん図鑑)を選ぶ
     @FXML
     private void drinkPageButtonAction(ActionEvent event){
-        picBookPages = picBook.load("drink"); 
+        picBookPages = picBook.load(Item.DRINK); 
     } 
     @FXML
     private void carrotPageButtonAction(ActionEvent event){
-        picBookPages = picBook.load("carrot"); 
+        picBookPages = picBook.load(Item.CARROT); 
     } 
 
     //図鑑のページをめくる

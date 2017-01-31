@@ -22,8 +22,19 @@ public enum CarrotType{
     public int price(){
         return this.price;
     }
-    public int[] getGrowthCondition(){
-        return this.growthCondition;
+
+    //成長条件を満たしているかを確認
+    public boolean wasGrown(int[] condition){
+        for(int i = 0;i < 7;i++){
+            if(condition[i] < growthCondition[i]){
+                return false;
+            } 
+        }
+        return true;
     }
     */
+
+    public static CarrotType get(int idx){
+        return CarrotType.values()[idx]; 
+    }
 }

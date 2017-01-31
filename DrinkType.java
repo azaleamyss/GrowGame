@@ -23,13 +23,7 @@ public enum DrinkType{
     }
     */
 
-    //列挙名(String)→ 列挙型に変換
-    public static DrinkType parseDrinkType(String name){
-        for(DrinkType drink: values()){
-            if(drink.name().equals(name)){
-                return drink;
-            }
-        }
-        return NONE;
+    public static DrinkType get(int idx){
+        return DrinkType.values()[idx];
     }
 }

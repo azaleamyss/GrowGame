@@ -2,13 +2,11 @@ import java.util.ArrayList;
 public class Carrot{
     private CarrotType type;
     private int[] condition;
-    private boolean isrotten;
 
     //育成用
-    Carrot(int[] gainedDrinks, boolean isrotten){
-        this.type = CarrotType.ORANGE;
+    Carrot(CarrotType type, int[] gainedDrinks){
+        this.type = type;//最初はみんなORANGE
         this.condition = gainedDrinks;
-        this.isrotten = isrotten; 
     }
 
     //人参の成長条件定義用(→ enumに変更)
@@ -22,6 +20,10 @@ public class Carrot{
         condition[4] = cola;
         condition[5] = veer;
         condition[6] = wine;
+    }
+
+    public void setType(CarrotType type){
+        this.type = type;
     }
 
     public CarrotType getType(){
@@ -38,15 +40,33 @@ public class Carrot{
 
     //腐る
     public void rot(){
-        this.isrotten = true;
+        this.type = CarrotType.GREEN;
     }
     public boolean isRotten(){
-        return isrotten;
+        if(type == CarrotType.GREEN){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //成長期が終わったかを確認
+    public boolean haveGrown(){
+        if(type == CarrotType.ORANGE){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     //ログ
     public ArrayList<String> getLog(){
         ArrayList<String> log = new ArrayList<String>();
+        log.add(type.name());
+        for(int i=0; i<DrinkType.values().length-1; i++){
+            log.add(condition[i]+"");
+        }
+
         return log;
     }
 }

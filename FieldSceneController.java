@@ -21,7 +21,7 @@ public class FieldSceneController extends GrowGameController implements Initiali
     private enum Mode{
         SOW,POUR,HARVEST,NONE
     }
-    private Mode nowMode;
+    private static Mode nowMode;
     private static Timeline timer;
 
     @FXML
@@ -30,10 +30,14 @@ public class FieldSceneController extends GrowGameController implements Initiali
     ScreensController myController;
 
     static{
+        int passCicle = getDateDiff(passDate)/5;
         fieldArea = new ArrayList<Field>();
         for(FieldPos pos: FieldPos.values()){
             ArrayList<String> log = logController.getFieldLog(pos);
             Field logf = new Field(log);
+            for(int i=0; i<passCicle; i++){
+                logf.passTime();//プレイしてない分を進ませる
+            }
             fieldArea.add(logf);
         }
 
@@ -51,12 +55,15 @@ public class FieldSceneController extends GrowGameController implements Initiali
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
         System.out.println("FieldSceneControllerほぼ未実装");     
+
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String date = getDispDate();
-        //dateLabel.setText(date);
+        ArrayList<String> date = getNowDate();
+        //dateLabel.setText(date.get(1)+"月 "+date.get(2)+"日");
     }
 
     public void setScreenParent(ScreensController screenParent){

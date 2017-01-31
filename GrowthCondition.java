@@ -3,6 +3,7 @@ public class GrowthCondition{
     private int epsilon = 10;
     private ArrayList<Carrot> carrotList;
 
+    /*enum実装次第消します*/
     GrowthCondition(){
         carrotList = new ArrayList<Carrot>();
         conditionInit();

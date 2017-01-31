@@ -288,6 +288,9 @@ public class LogController {
 
                     //carrot要素
 					Element carrot= fieldLog.createElement("carrot");
+					Element type = fieldLog.createElement("type");
+					type.appendChild(fieldLog.createTextNode(CarrotType.ORANGE.name()));
+					carrot.appendChild(type);
                     for(DrinkType drinkType: DrinkType.values()){
                         if(drinkType != DrinkType.NONE){
                             Element gainedDrink = fieldLog.createElement("gaineddrink"); 

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class PictureBook{
     private ArrayList<String> pageCarrot;
     private ArrayList<String> pageDrink;
@@ -7,10 +8,10 @@ public class PictureBook{
         pageDrink = new ArrayList<String>();
     }
 
-    public ArrayList<String> load(String page){
-        if(page.equals("carrot")){
+    public ArrayList<String> load(Item item){
+        if(item == Item.CARROT){
             return pageCarrot;
-        }else if(page.equals("drink")){
+        }else if(item == Item.DRINK){
             return pageDrink;
         }
     }
