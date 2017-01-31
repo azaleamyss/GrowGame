@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.Parent;
 import javafx.fxml.FXML;
 
-public class ShopSceneController extends ObjectField implements Initializable, ControlledScreen  {
+public class ShopSceneController extends GrowGameController implements Initializable, ControlledScreen  {
     ScreensController myController;
 
     static{

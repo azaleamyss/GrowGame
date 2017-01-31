@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.fxml.FXML;
 import java.util.ArrayList;
 
-public class StorageSceneController extends ObjectField implements Initializable,ControlledScreen {
+public class StorageSceneController extends GrowGameController implements Initializable,ControlledScreen {
     ScreensController myController;
 
     static{
