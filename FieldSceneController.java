@@ -68,7 +68,9 @@ public class FieldSceneController extends GrowGameController implements Initiali
             fieldArea.add(logf);
         }
 
-        //growthCondition = new GrowthCondition();
+        for(Field f: fieldArea){
+
+        }
 
         //タイマーの設定
         timer = new Timeline(new KeyFrame(Duration.millis(300000), new EventHandler<ActionEvent>(){

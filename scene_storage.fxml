@@ -53,7 +53,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="279.0" prefWidth="174.0">
                <children>
-                  <Label fx:id="storage_none" alignment="CENTER" prefHeight="430.0" prefWidth="181.0" text="倉庫">
+                  <Label fx:id="storage_none" alignment="CENTER" prefHeight="430.0" prefWidth="181.0">
                      <font>
                         <Font size="56.0" />
                      </font>

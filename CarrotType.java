@@ -60,6 +60,6 @@ public enum CarrotType{
     }
 
     public static CarrotType get(int idx){
-        return CarrotType.values()[idx]; 
+        return values()[idx]; 
     }
 }

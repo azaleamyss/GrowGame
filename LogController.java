@@ -233,13 +233,17 @@ public class LogController {
 				for(DrinkType type: DrinkType.values()){
                     Element drink = storageLog.createElement("drink");
                     drink.setAttribute("name",type.name());
-                    drink.appendChild(storageLog.createTextNode("0"));
+                    if(type == DrinkType.WATER){
+                        drink.appendChild(storageLog.createTextNode("5"));
+                    }else{
+                        drink.appendChild(storageLog.createTextNode("0"));
+                    }
                     drinks.appendChild(drink);
 				}
 
                 //seeds要素
 				Element seeds = storageLog.createElement("seeds");
-				seeds.appendChild(storageLog.createTextNode("0"));
+				seeds.appendChild(storageLog.createTextNode("10"));
 				root.appendChild(seeds);
 
                 //carrots要素
@@ -254,7 +258,7 @@ public class LogController {
 
                 //money要素
 				Element money = storageLog.createElement("money");
-				money.appendChild(storageLog.createTextNode("0"));
+				money.appendChild(storageLog.createTextNode("500"));
 				root.appendChild(money);
 
 				write(logFile,storageLog);

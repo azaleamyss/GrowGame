@@ -30,12 +30,16 @@ public class StorageSceneController extends GrowGameController implements Initia
 
     static{
         //取得したログから倉庫インスタンス生成
-        ArrayList<String> callotLog = logController.getStorageLog("callots");
+        ArrayList<String> carrotLog = logController.getStorageLog("carrots");
+        System.out.println("----------");
+        for(String s: carrotLog){
+            System.out.println(s);
+        }
         ArrayList<String> drinkLog = logController.getStorageLog("drinks");
         ArrayList<String> seedsLog = logController.getStorageLog("seeds");
         ArrayList<String> moneyLog = logController.getStorageLog("money");
 
-        storage = new Storage(callotLog,drinkLog,seedsLog,moneyLog);
+        storage = new Storage(carrotLog,drinkLog,seedsLog,moneyLog);
     }
 
     @Override
@@ -48,7 +52,8 @@ public class StorageSceneController extends GrowGameController implements Initia
         dispLabels[4] = dispLabel5;
         dispLabels[5] = dispLabel6;
         dispLabels[6] = dispLabel7;
-        System.out.println("hoge");
+
+        storage_none.setText("倉庫");
     }    
     
     public void setScreenParent(ScreensController screenParent){
@@ -62,23 +67,28 @@ public class StorageSceneController extends GrowGameController implements Initia
 
     @FXML
     private void dispDrinkButtonAction(ActionEvent event){
+        storage_none.setText("");
         disp(storage.getStoredDrinks(),Item.DRINK);
     }
     @FXML
     private void dispCarrotButtonAction(ActionEvent event){
+        storage_none.setText("");
         disp(storage.getStoredCarrots(),Item.CARROT);
     }
     @FXML
     private void dispSeedsButtonAction(ActionEvent event){
+        storage_none.setText("");
         disp(storage.getStoredSeeds(),Item.SEED);
     }
     @FXML
     private void dispMoneyButtonAction(ActionEvent event){
+        storage_none.setText("");
         disp(storage.getStoredMoney(),Item.MONEY);
     }
 
     //在庫を表示(0個のものは表示されない)
     private void disp(ArrayList<String> storedItemNum, Item item){
+        boolean none = true;
         for(int i=0; i<7; i++){
             dispLabels[i].setOpacity(0.0d);
         }
@@ -87,18 +97,23 @@ public class StorageSceneController extends GrowGameController implements Initia
         String text = "";
         for(String s: storedItemNum){
             if(item == Item.MONEY || item == Item.SEED){
-                text = item.name() + "・・・"+ s +" "+item.unit();
+                text = item.name() + " ・・・ "+ s +" "+item.unit();
             }else if(item == Item.CARROT){
-                text = CarrotType.get(i).name() + "・・・" + storedItemNum.get(i) +" "+ item.unit();
+                text = CarrotType.get(i).name() + " ・・・ " + storedItemNum.get(i) +" "+ item.unit();
             }else if(item == Item.DRINK){
-                text = DrinkType.get(i).name() + "・・・" + storedItemNum.get(i) +" "+ item.unit();
+                text = DrinkType.get(i).name() + " ・・・ " + storedItemNum.get(i) +" "+ item.unit();
             }
 
             if(!s.equals("0") || item == Item.MONEY || item == Item.SEED){
                 dispLabels[i].setText(text);
-                dispLabels[i].setOpacity(0.7d);
+                dispLabels[i].setOpacity(10d);
                 i++;
+                none = false;
             }
+        }
+        if(none){
+            dispLabels[0].setText("在庫がありません");
+            dispLabels[0].setOpacity(10d);
         }
     }
 }
