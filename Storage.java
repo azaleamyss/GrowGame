@@ -6,31 +6,44 @@ public class Storage{
     private ArrayList<String> storedMoney;
 
     Storage(ArrayList<String> carrots, ArrayList<String> drinks, ArrayList<String> seeds, ArrayList<String> money){
+        storedDrinks = drinks;
+        storedCarrots = carrots;
+        storedSeeds = seeds;
+        storedMoney = money;
     }
 
-    public void setStoredCarrots(){
+    public void setStoredCarrots(ArrayList<String> value){
+        storedCarrots = value;
     }
-    public void setStoredSeeds(){
+    public void setStoredSeeds(ArrayList<String> value){
+        storedSeeds = value;
     }
-    public void setStoredDrinks(){
+    public void setStoredDrinks(ArrayList<String> value){
+        storedDrinks = value;
     }
-    public void setStoredMoney(){
+    public void setStoredMoney(ArrayList<String> value){
+        storedMoney = value;
     }
 
     public ArrayList<String> getStoredCarrots(){
-        return null;
+        return storedCarrots;
     }
     public ArrayList<String> getStoredSeeds(){
-        return null;
+        return storedSeeds;
     }
     public ArrayList<String> getStoredDrinks(){
-        return null;
+        return storedDrinks;
     }
     public ArrayList<String> getStoredMoney(){
-        return null;
+        return storedMoney;
     }
 
     public ArrayList<ArrayList<String>> getLog(){
-        return null;
+        ArrayList<ArrayList<String>> log = new ArrayList<ArrayList<String>>();  
+        log.add(storedDrinks);
+        log.add(storedSeeds);
+        log.add(storedCarrots);
+        log.add(storedMoney);
+        return log;
     }
 }

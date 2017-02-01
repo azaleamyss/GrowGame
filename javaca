@@ -1,0 +1,12 @@
+#/bin/bash
+
+for filename in *
+do
+  case "$filename" in 
+    *.java)
+    #javaファイルのみコンパイル
+    javac "$filename"
+    ;;
+  esac
+done 
+

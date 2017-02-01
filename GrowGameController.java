@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
@@ -9,10 +10,8 @@ public class GrowGameController{
     protected static ArrayList<Field> fieldArea;
     protected static Shop shop;
     protected static Storage storage;
-    protected static GrowthCondition growthCondition;
     protected static LogController logController;
     protected static ArrayList<String> passDate;
-    protected static PictureBook picBook;
     protected static SimpleDateFormat sdf;
 
     static{
@@ -22,9 +21,13 @@ public class GrowGameController{
     }
 
     protected ArrayList<String> getNowDate(){
+        ArrayList<String> now = new ArrayList<String>();
         String nowDateText = sdf.format(new Date());
-        String[] nowDate = nowDateText.split("-"); 
-        return (ArrayList<String>)Arrays.asList(nowDate);
+        String[] temp = nowDateText.split("-"); 
+        for(int i=0; i<temp.length; i++){
+            now.add(temp[i]);
+        }
+        return now;
     }
 
     protected void exit(){

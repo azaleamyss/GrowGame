@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,22 +9,57 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StorageSceneController">
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="620.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StorageSceneController">
   <children>
-    <VBox prefHeight="153.0" prefWidth="174.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <children>
-        <Button mnemonicParsing="false" onAction="#goToHatake" prefHeight="25.0" prefWidth="73.0" text="戻る" />
-            <Label prefHeight="168.0" prefWidth="329.0" text="Storage">
-               <font>
-                  <Font size="53.0" />
-               </font>
-            </Label>
-      </children>
-    </VBox>
-      <Button layoutX="292.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="225.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="158.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="90.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="24.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
+      <Button alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToHatake" prefHeight="53.0" prefWidth="98.0" text="戻る" />
+      <Button onAction="#dispCarrotButtonAction" alignment="CENTER" layoutX="126.0" layoutY="541.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #FAF4C0; -fx-border-color: black;" text="Carrots">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Button onAction="#dispDrinkButtonAction" layoutX="30.0" layoutY="541.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #FAF4C0; -fx-border-color: black;" text="Drinks">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Button onAction="#dispSeedsButtonAction" alignment="CENTER" layoutX="222.0" layoutY="541.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #FAF4C0; -fx-border-color: black;" text="Seeds">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Button onAction="#dispMoneyButtonAction" alignment="CENTER" layoutX="318.0" layoutY="541.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #FAF4C0; -fx-border-color: black;" text="Money">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Label layoutX="30.0" layoutY="472.0" prefHeight="75.0" prefWidth="192.0" text="在庫を確認">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="374.0" fitWidth="588.0" layoutX="14.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+             <Image url="@image/storage.jpg" />
+         </image>
+      </ImageView>
+      <StackPane layoutX="594.0" layoutY="80.0" prefHeight="430.0" prefWidth="179.0" style="-fx-border-color: black;">
+         <children>
+            <VBox fx:id="storage_box" alignment="TOP_CENTER" prefHeight="279.0" prefWidth="174.0">
+               <children>
+                  <Label fx:id="dispLabel1" alignment="CENTER" prefHeight="55.0" prefWidth="219.0"/>
+                  <Label fx:id="dispLabel2" alignment="CENTER" prefHeight="55.0" prefWidth="241.0"/>
+                  <Label fx:id="dispLabel3" alignment="CENTER" prefHeight="55.0" prefWidth="179.0"/>
+                  <Label fx:id="dispLabel4" alignment="CENTER" prefHeight="55.0" prefWidth="230.0"/>
+                  <Label fx:id="dispLabel5" alignment="CENTER" prefHeight="55.0" prefWidth="200.0"/>
+                  <Label fx:id="dispLabel6" alignment="CENTER" prefHeight="55.0" prefWidth="205.0"/>
+                  <Label fx:id="dispLabel7" alignment="CENTER" prefHeight="55.0" prefWidth="193.0"/>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="279.0" prefWidth="174.0">
+               <children>
+                  <Label fx:id="storage_none" alignment="CENTER" prefHeight="430.0" prefWidth="181.0" text="倉庫">
+                     <font>
+                        <Font size="56.0" />
+                     </font>
+                  </Label>
+               </children></VBox>
+         </children>
+      </StackPane>
   </children>
 </AnchorPane>

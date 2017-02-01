@@ -231,12 +231,10 @@ public class LogController {
 				Element drinks = storageLog.createElement("drinks");
 				root.appendChild(drinks);
 				for(DrinkType type: DrinkType.values()){
-                    if(type != DrinkType.NONE){
-                        Element drink = storageLog.createElement("drink");
-                        drink.setAttribute("name",type.name());
-                        drink.appendChild(storageLog.createTextNode("0"));
-                        drinks.appendChild(drink);
-                    }
+                    Element drink = storageLog.createElement("drink");
+                    drink.setAttribute("name",type.name());
+                    drink.appendChild(storageLog.createTextNode("0"));
+                    drinks.appendChild(drink);
 				}
 
                 //seeds要素
@@ -278,7 +276,7 @@ public class LogController {
 
                     //飲み物要素
 					Element drink = fieldLog.createElement("drink");
-					drink.appendChild(fieldLog.createTextNode(DrinkType.NONE.name()));
+					drink.appendChild(fieldLog.createTextNode("NONE"));
 					field.appendChild(drink);
 
                     //経過時間要素
@@ -292,12 +290,10 @@ public class LogController {
 					type.appendChild(fieldLog.createTextNode(CarrotType.ORANGE.name()));
 					carrot.appendChild(type);
                     for(DrinkType drinkType: DrinkType.values()){
-                        if(drinkType != DrinkType.NONE){
-                            Element gainedDrink = fieldLog.createElement("gaineddrink"); 
-                            gainedDrink.setAttribute("type",drinkType.name());
-                            gainedDrink.appendChild(fieldLog.createTextNode("0"));
-                            carrot.appendChild(gainedDrink);
-                        }
+                        Element gainedDrink = fieldLog.createElement("gaineddrink"); 
+                        gainedDrink.setAttribute("type",drinkType.name());
+                        gainedDrink.appendChild(fieldLog.createTextNode("0"));
+                        carrot.appendChild(gainedDrink);
                     }
 					field.appendChild(carrot);
 				}

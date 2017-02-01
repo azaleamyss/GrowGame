@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,22 +8,71 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShopSceneController">
-  <children>
-    <VBox prefHeight="501.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <children>
-        <Button mnemonicParsing="false" onAction="#goToHatake" prefHeight="25.0" prefWidth="72.0" text="戻る" />
-            <Label prefHeight="119.0" prefWidth="396.0" text="Shop">
-               <font>
-                  <Font size="68.0" />
-               </font>
-            </Label>
-      </children>
-    </VBox>
-      <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="80.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="148.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="215.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="282.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
-  </children>
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShopSceneController">
+    <children>
+        <Button alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToHatake" prefHeight="53.0" prefWidth="98.0" text="戻る" />
+        <Button fx:id="shop_tea" alignment="CENTER" layoutX="571.0" layoutY="266.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4Fa;" text="おちゃ">
+            <font>
+                <Font name="System Bold" size="18.0" />
+        </font></Button>
+        <Button fx:id="shop_beer" alignment="CENTER" layoutX="571.0" layoutY="486.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4FA;" text="ビール">
+            <font>
+                <Font name="System Bold" size="18.0" />
+        </font></Button>
+        <Button fx:id="shop_coke" alignment="CENTER" layoutX="667.0" layoutY="376.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4Fa;" text="コーラ">
+            <font>
+                <Font name="System Bold" size="18.0" />
+        </font></Button>
+        <Button fx:id="shop_milk" alignment="CENTER" layoutX="571.0" layoutY="376.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="牛乳">
+            <font>
+                <Font name="System Bold" size="18.0" />
+        </font></Button>
+        <Button fx:id="shop_shoyu" alignment="CENTER" layoutX="667.0" layoutY="266.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="しょうゆ">
+            <font>
+                <Font name="System Bold" size="18.0" />
+        </font></Button>
+        <Button fx:id="shop_wine" alignment="CENTER" layoutX="667.0" layoutY="486.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="ワイン">
+            <font>
+                <Font name="System Bold" size="18.0" />
+        </font></Button>
+        <ImageView fitHeight="454.0" fitWidth="525.0" layoutX="22.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@image/shop.jpg" />
+            </image>
+        </ImageView>
+        <Label fx:id="storage_money" alignment="CENTER" layoutX="611.0" layoutY="14.0" prefHeight="53.0" prefWidth="169.0" style="-fx-border-color: black;" text="お金：">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Button fx:id="shop_tane" alignment="CENTER" layoutX="394.0" layoutY="486.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="153.0" style="-fx-border-color: black;" text="たね">
+            <font>
+                <Font name="System Bold" size="30.0" />
+            </font>
+        </Button>
+        <Button fx:id="shop_water" alignment="CENTER" layoutX="667.0" layoutY="156.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #D4F4FA; -fx-border-color: black;" text="みず">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+        <StackPane layoutX="24.0" layoutY="486.0" prefHeight="75.0" prefWidth="313.0" style="-fx-border-color: black;">
+            <children>
+                <Label fx:id="shop_true" alignment="CENTER" prefHeight="72.0" prefWidth="319.0" text="ありがとうございました！">
+                    <font>
+                        <Font size="29.0" />
+                    </font>
+                </Label>
+                <Label fx:id="shop_false" alignment="CENTER" prefHeight="76.0" prefWidth="339.0" text="残高不足">
+                    <font>
+                        <Font size="29.0" />
+                    </font>
+                </Label>
+                <Label fx:id="shop_none" alignment="CENTER" prefHeight="81.0" prefWidth="331.0" text="いらっしゃいませ！">
+                    <font>
+                        <Font size="29.0" />
+                    </font>
+                </Label>
+            </children>
+        </StackPane>
+    </children>
 </AnchorPane>

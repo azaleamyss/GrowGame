@@ -2,20 +2,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.Parent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import java.util.ArrayList;
 
 public class StorageSceneController extends GrowGameController implements Initializable,ControlledScreen {
 
     ScreensController myController;
 
+    private Label[] dispLabels;//項目表示
     @FXML private Label dispLabel1;
     @FXML private Label dispLabel2;
     @FXML private Label dispLabel3;
@@ -23,8 +25,8 @@ public class StorageSceneController extends GrowGameController implements Initia
     @FXML private Label dispLabel5;
     @FXML private Label dispLabel6;
     @FXML private Label dispLabel7;
-
-    private Label[] dispLabels;
+    @FXML private VBox storage_box;
+    @FXML private Label storage_none;//画面遷移時用
 
     static{
         //取得したログから倉庫インスタンス生成
@@ -46,6 +48,7 @@ public class StorageSceneController extends GrowGameController implements Initia
         dispLabels[4] = dispLabel5;
         dispLabels[5] = dispLabel6;
         dispLabels[6] = dispLabel7;
+        System.out.println("hoge");
     }    
     
     public void setScreenParent(ScreensController screenParent){
@@ -99,3 +102,4 @@ public class StorageSceneController extends GrowGameController implements Initia
         }
     }
 }
+

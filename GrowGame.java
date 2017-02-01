@@ -9,6 +9,8 @@ public class GrowGame extends Application{
     public static String screen2File = "scene_shop.fxml";
     public static String screen3ID = "storage";
     public static String screen3File = "scene_storage.fxml";
+    public static String screen4ID = "title";
+    public static String screen4File = "scene_title.fxml";
 
     @Override
     public void start(Stage primaryStage){
@@ -16,8 +18,9 @@ public class GrowGame extends Application{
         mainContainer.loadScreen(GrowGame.screen1ID, GrowGame.screen1File);
         mainContainer.loadScreen(GrowGame.screen2ID, GrowGame.screen2File);
         mainContainer.loadScreen(GrowGame.screen3ID, GrowGame.screen3File);
+        mainContainer.loadScreen(GrowGame.screen4ID, GrowGame.screen4File);
 
-        mainContainer.setScreen(GrowGame.screen1ID);
+        mainContainer.setScreen(GrowGame.screen4ID);
 
         Group root = new Group();
         root.getChildren().addAll(mainContainer);

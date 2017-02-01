@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="795.0" style="-fx-border-color: black; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TitleSceneController">
+    <children>
+        <Label alignment="CENTER" layoutX="236.0" layoutY="610.0" prefHeight="52.0" prefWidth="324.0" text="制作：programming group 1">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="584.0" fitWidth="555.0" layoutX="159.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@image/carrot/ninjin1.png" />
+            </image>
+        </ImageView>
+        <Label alignment="CENTER" layoutX="97.0" layoutY="187.0" prefHeight="119.0" prefWidth="604.0" style="-fx-border-color: black; -fx-background-color: white;" text="にんじんFARM" textAlignment="CENTER">
+            <font>
+                <Font size="68.0" />
+            </font>
+        </Label>
+        <Button alignment="CENTER" layoutX="336.0" layoutY="471.0" mnemonicParsing="false" onAction="#goToHatake" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: white; -fx-border-color: black;" text="Start" textFill="#2a8013">
+            <font>
+                <Font size="28.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
