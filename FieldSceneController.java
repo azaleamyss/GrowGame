@@ -30,6 +30,8 @@ public class FieldSceneController extends GrowGameController implements Initiali
     private ImageView weatherImageView;
     @FXML
     private ImageView drinkImageView;
+    @FXML
+    private ImageView drinkButtonImageView;
 
     @FXML private ImageView TLImageView0;
     @FXML private ImageView TLImageView1;
@@ -102,6 +104,7 @@ public class FieldSceneController extends GrowGameController implements Initiali
         fieldAreaViewInit();
         timerInit();
         updateDispTime();
+        //drinkButtonImageView.setImage
     }
 
     private void timerInit(){
@@ -245,6 +248,7 @@ public class FieldSceneController extends GrowGameController implements Initiali
 
     private void pour(FieldPos pos){
         //まず選択した飲み物の種類を取得する
+
     }
 
     private void harvest(FieldPos pos){

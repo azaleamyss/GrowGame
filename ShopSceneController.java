@@ -14,15 +14,69 @@ import javafx.fxml.FXML;
 public class ShopSceneController extends GrowGameController implements Initializable, ControlledScreen  {
     ScreensController myController;
 
-    static{
-        shop = new Shop();
-        /*ShopSceneController未実装*/
-    }
-   
+    @FXML
+    private ImageView productImageView;
+    @FXML
+    private Label totalCostLabel;
+    
+    @FXML private Label shopperLabel;
+    @FXML private Label nowMoneyLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        shopperLabel.setText("いらっしゃいませ!");
     }
-    
+
+    private int getTotalCost(){
+        int total = Integer.parseInt(totalCostLabel.getText());
+        return total;
+    }
+
+    //購入時の処理
+    @FXML
+    private void buyButtonAction(ActionEvent event){
+        int total = getTotalCost();
+        int money = Integer.parseInt(storage.getStoredMoney().get(0));
+        if(total <= money){
+            shopperLabel.setText("ありがとうございました!");
+            money -= total;
+            storage.getStoredMoney().set(0,money+"");
+            nowMoneyLabel.setText("お金: "+money); 
+        }else{
+            shopperLabel.setText("残高不足です!");
+        }
+    }
+
+    //飲み物各種ボタン
+    @FXML
+    private void waterButtonAction(ActionEvent event){
+        productImageView.setImage(DrinkType.WATER.image());
+    }
+    @FXML
+    private void teaButtonAction(ActionEvent event){
+        productImageView.setImage(DrinkType.TEA.image());
+    }
+    @FXML
+    private void milkButtonAction(ActionEvent event){
+        productImageView.setImage(DrinkType.MILK.image());
+    }
+    @FXML
+    private void colaButtonAction(ActionEvent event){
+        productImageView.setImage(DrinkType.COLA.image());
+    }
+    @FXML
+    private void beerButtonAction(ActionEvent event){
+        productImageView.setImage(DrinkType.VEER.image());
+    }
+    @FXML
+    private void wineButtonAction(ActionEvent event){
+        productImageView.setImage(DrinkType.WINE.image());
+    }
+    @FXML
+    private void shoyuButtonAction(ActionEvent event){
+        productImageView.setImage(DrinkType.SHOYU.image());
+    }
+
     public void setScreenParent(ScreensController screenParent){
         myController = screenParent;
     }

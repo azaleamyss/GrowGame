@@ -20,6 +20,9 @@
 
         </Button> 
         <Button onAction="#pourButtonAction" fx:id="drinkButton" alignment="CENTER" layoutX="673.0" layoutY="270.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="水やり">
+            <graphic>
+                <ImageView fx:id="drinkButtonImageView"/>
+            </graphic>
         </Button>
         <Button onAction="#sowButtonAction" fx:id="seedButton" alignment="CENTER" layoutX="673.0" layoutY="380.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="種まき" >
         </Button>
