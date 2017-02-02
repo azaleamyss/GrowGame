@@ -3,4 +3,7 @@ public class Shop{
     Shop(){
         System.out.println("Shop未実装");
     }
+
+    public void sell(){
+    }
 }

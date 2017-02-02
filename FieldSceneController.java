@@ -71,14 +71,15 @@ public class FieldSceneController extends GrowGameController implements Initiali
         }
 
         for(Field f: fieldArea){
-
         }
 
         //imgの読み込み
+        /*
         processImg = new Image[3];
-        processImg[0] = new Image("/image/process1.jpg");
-        processImg[1] = new Image("/image/process2.jpg");
-        processImg[2] = new Image("/image/process3.png");
+        processImg[0] = new Image("/image/leaf.jpg");
+        processImg[1] = new Image("/image/me.jpg");
+        processImg[2] = new Image("/image/sen.png");
+        */
 
         timer_cnt = 0;
     }
@@ -96,6 +97,7 @@ public class FieldSceneController extends GrowGameController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("change");
         ArrayList<String> date = getNowDate();
         fieldAreaViewInit();
         timerInit();
@@ -138,11 +140,13 @@ public class FieldSceneController extends GrowGameController implements Initiali
         fieldAreaView[5][1] = URImageView1;
         fieldAreaView[5][2] = URImageView2;
 
+        /*
         for(int i=0; i<6; i++){
             for(int j=0; j<3; j++){
                 fieldAreaView[i][j].setImage(processImg[j]);
             }
         }
+        */
 
         updateFieldImage();
     }
@@ -236,6 +240,7 @@ public class FieldSceneController extends GrowGameController implements Initiali
         }else{
             System.out.println("無理です");
         }
+        updateFieldImage();
     }
 
     private void pour(FieldPos pos){
@@ -255,8 +260,12 @@ public class FieldSceneController extends GrowGameController implements Initiali
     private void updateFieldImage(){
         for(FieldPos pos: FieldPos.values()){
             Field field = fieldArea.get(pos.ordinal());
-            if(!field.isEmpty()){
-                ImageView[] thisView = getFieldAreaView(pos.ordinal());
+            ImageView[] thisView = getFieldAreaView(pos.ordinal());
+            if(field.isEmpty()){
+                thisView[0].setOpacity(0.0d);
+                thisView[1].setOpacity(0.0d);
+                thisView[2].setOpacity(0.0d);
+            }else{
                 if(field.getPassedTime() < 120){
                     thisView[0].setOpacity(0.0d);
                     thisView[1].setOpacity(0.0d);
@@ -270,8 +279,6 @@ public class FieldSceneController extends GrowGameController implements Initiali
                     thisView[1].setOpacity(0.0d);
                     thisView[2].setOpacity(0.0d);
                 }
-            }else{
-                System.out.println("dont need update image");
             }
         }
     }
