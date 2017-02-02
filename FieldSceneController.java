@@ -53,6 +53,8 @@ public class FieldSceneController extends GrowGameController implements Initiali
     private ImageView[][] fieldAreaView;
 
     private static Image[] processImg;
+    public static final int constraintTime = 60;//制約は1分
+    private static int timer_cnt;
 
     ScreensController myController;
 
@@ -72,29 +74,47 @@ public class FieldSceneController extends GrowGameController implements Initiali
 
         }
 
-        //タイマーの設定
-        timer = new Timeline(new KeyFrame(Duration.millis(300000), new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event) {
-                for(Field field: fieldArea){
-                    field.passTime();
-                }
-            }
-        }));
-        timer.setCycleCount(Timeline.INDEFINITE);
-        timer.play();
-
         //imgの読み込み
         processImg = new Image[3];
         processImg[0] = new Image("/image/process1.jpg");
         processImg[1] = new Image("/image/process2.jpg");
         processImg[2] = new Image("/image/process3.png");
+
+        timer_cnt = 0;
+    }
+
+    private ImageView[] getFieldAreaView(int idx){
+        return fieldAreaView[idx];
+    }
+
+
+    //constraintTimeおきに時刻を取得
+    private void updateDispTime(){
+        ArrayList<String> now = getNowDate();
+        field_timer.setText(now.get(1)+"月"+now.get(2)+"日 "+now.get(3)+"時"+now.get(4)+"分");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ArrayList<String> date = getNowDate();
         fieldAreaViewInit();
+        timerInit();
+        updateDispTime();
+    }
+
+    private void timerInit(){
+        timer = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                updateDispTime();
+                for(Field f: fieldArea){
+                    f.passTime();
+                }
+                updateFieldImage();
+            }
+        }));
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
     }
 
     private void fieldAreaViewInit(){
@@ -123,7 +143,10 @@ public class FieldSceneController extends GrowGameController implements Initiali
                 fieldAreaView[i][j].setImage(processImg[j]);
             }
         }
+
+        updateFieldImage();
     }
+
 
     public void setScreenParent(ScreensController screenParent){
         myController = screenParent;
@@ -148,18 +171,21 @@ public class FieldSceneController extends GrowGameController implements Initiali
     @FXML
     private void sowButtonAction(ActionEvent event){
         nowMode = Mode.SOW;
+        System.out.println("種まき");
     }
 
     //水やりボタン
     @FXML
     private void pourButtonAction(ActionEvent event){
         nowMode = Mode.POUR;
+        System.out.println("水やり");
     }
 
     //収穫ボタン
     @FXML
     private void harvestButtonAction(ActionEvent event){
         nowMode = Mode.HARVEST;
+        System.out.println("収穫");
     }
 
     //畑のどれかをクリック
@@ -199,15 +225,17 @@ public class FieldSceneController extends GrowGameController implements Initiali
     }
 
     private void sow(FieldPos pos){
-        int rest = Integer.parseInt(storage.getStoredSeeds().get(0)) -1;
-        if(rest < 0){
-            rest = 0;
-        }
-        storage.getStoredSeeds().set(0,rest+"");
         Field field = fieldArea.get(pos.ordinal());
-        field.setNewCarrot();//畑を再構築しない場合
-        //fieldArea.set(pos.id(), new Field());//再構築する場合
-        changeFieldImage(field,pos);
+        if(field.isEmpty()){
+            int rest = Integer.parseInt(storage.getStoredSeeds().get(0)) -1;
+            if(rest < 0){
+                rest = 0;
+            }
+            storage.getStoredSeeds().set(0,rest+"");
+            field.setNewCarrot();//畑を再構築しない場合
+        }else{
+            System.out.println("無理です");
+        }
     }
 
     private void pour(FieldPos pos){
@@ -215,31 +243,36 @@ public class FieldSceneController extends GrowGameController implements Initiali
     }
 
     private void harvest(FieldPos pos){
+        Field field = fieldArea.get(pos.ordinal());
+        if(field.getCarrot().isRotten()){
+            //腐った人参を取得
+        }else{
+            //人参の種類
+        }
     }
 
     //畑の画像が変わる
-    private void changeFieldImage(Field field, FieldPos pos){
-        /*
-        if(field.getPassedTime() < 2){
-            //植えたて
-            fieldAreaView[pos.id()].setImage(statusImage[0]);
-        }else if(field.getPassedTime() < 6){
-            //芽
-            fieldAreaView[pos.id()].setImage(statusImage[1]);
-            if(field.getCarrot().hasEvolved()){
-                fieldAreaView[pos.id()].setImage(statusImage[0]);
-                fieldAreaView[pos.id()].setImage(statusImage[1]);
-                field.getCarrot().evolve(false);
+    private void updateFieldImage(){
+        for(FieldPos pos: FieldPos.values()){
+            Field field = fieldArea.get(pos.ordinal());
+            if(!field.isEmpty()){
+                ImageView[] thisView = getFieldAreaView(pos.ordinal());
+                if(field.getPassedTime() < 120){
+                    thisView[0].setOpacity(0.0d);
+                    thisView[1].setOpacity(0.0d);
+                    thisView[2].setOpacity(10d);
+                }else if(field.getPassedTime() < 240){
+                    thisView[0].setOpacity(0.0d);
+                    thisView[1].setOpacity(10d);
+                    thisView[2].setOpacity(0.0d);
+                }else{
+                    thisView[0].setOpacity(10d);
+                    thisView[1].setOpacity(0.0d);
+                    thisView[2].setOpacity(0.0d);
+                }
+            }else{
+                System.out.println("dont need update image");
             }
-        }else{
-            //leaf.png
-            fieldAreaView[pos.id()].setImage(statusImage[2]);
-            if(field.getCarrot().hasEvolved()){
-                fieldAreaView[pos.id()].setImage(statusImage[1]);
-                fieldAreaView[pos.id()].setImage(statusImage[2]);
-                field.getCarrot().evolve(false);
-            }
-        } 
-        */
+        }
     }
 }

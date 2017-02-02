@@ -16,6 +16,12 @@ public class GrowGameController{
 
     static{
         logController = new LogController();
+        ArrayList<String> log1 = logController.getFieldLog(FieldPos.TOP_LEFT);
+        System.out.println("-----------");
+        for(String s: log1){
+            System.out.print(s+" ");
+        }
+        System.out.println("-----------");
         passDate = logController.getFieldLog("date");
         sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
     }

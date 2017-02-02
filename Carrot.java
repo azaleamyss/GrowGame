@@ -2,6 +2,7 @@ import java.util.ArrayList;
 public class Carrot{
     private CarrotType type;
     private int[] condition;
+    private boolean rot_f;
 
     //育成用
     Carrot(CarrotType type, int[] gainedDrinks){
@@ -27,14 +28,10 @@ public class Carrot{
 
     //腐る
     public void rot(){
-        this.type = CarrotType.GREEN;
+        this.rot_f = true;
     }
     public boolean isRotten(){
-        if(type == CarrotType.GREEN){
-            return true;
-        }else{
-            return false;
-        }
+        return this.rot_f;
     }
 
     //成長期が終わったかを確認
@@ -50,7 +47,7 @@ public class Carrot{
     public ArrayList<String> getLog(){
         ArrayList<String> log = new ArrayList<String>();
         log.add(type.name());
-        for(int i=0; i<DrinkType.values().length-1; i++){
+        for(int i=0; i<DrinkType.values().length; i++){
             log.add(condition[i]+"");
         }
 

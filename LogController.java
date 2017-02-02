@@ -278,6 +278,11 @@ public class LogController {
 					field.setAttribute("position",pos.name());
 					root.appendChild(field);
 
+                    //空き地
+					Element status = fieldLog.createElement("status");
+					status.appendChild(fieldLog.createTextNode("empty"));
+					field.appendChild(status);
+
                     //飲み物要素
 					Element drink = fieldLog.createElement("drink");
 					drink.appendChild(fieldLog.createTextNode("NONE"));

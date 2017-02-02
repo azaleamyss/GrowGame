@@ -12,15 +12,16 @@
 
 <AnchorPane id="AnchorPane" minHeight="122.0" prefHeight="620.0" prefWidth="795.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FieldSceneController">
     <children>
+        <Label fx:id="field_timer" prefHeight="90.0" prefWidth="270.0" alignment="TOP_LEFT" layoutX="100.0" layoutY="14.0"/> 
         <Button alignment="CENTER" layoutX="428.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToStorage" prefHeight="39.0" prefWidth="76.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 15;" text="倉庫" />
         <Button alignment="CENTER" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToShop" prefHeight="39.0" prefWidth="76.0" style="-fx-border-color: black; -fx-border-radius: 15; -fx-background-color: transparent;" text="売店" />
         <Button alignment="CENTER" layoutX="689.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToTitle" text="Title" />
         <Button onAction="#harvestButtonAction" fx:id="harvestButton" alignment="CENTER" layoutX="673.0" layoutY="487.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="収穫">
 
         </Button> 
-        <Button alignment="CENTER" layoutX="673.0" layoutY="270.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="水やり">
+        <Button onAction="#pourButtonAction" fx:id="drinkButton" alignment="CENTER" layoutX="673.0" layoutY="270.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="水やり">
         </Button>
-        <Button alignment="CENTER" layoutX="673.0" layoutY="380.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="種まき" >
+        <Button onAction="#sowButtonAction" fx:id="seedButton" alignment="CENTER" layoutX="673.0" layoutY="380.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="種まき" >
         </Button>
         <StackPane layoutX="32.0" layoutY="119.0" prefHeight="150.0" prefWidth="200.0">
             <children>
