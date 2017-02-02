@@ -32,6 +32,10 @@ public class FieldSceneController extends GrowGameController implements Initiali
     private ImageView drinkImageView;
     @FXML
     private ImageView drinkButtonImageView;
+    @FXML
+    private ImageView sunImageView;
+    @FXML
+    private ImageView moonImageView;
 
     @FXML private ImageView TLImageView0;
     @FXML private ImageView TLImageView1;
@@ -99,7 +103,6 @@ public class FieldSceneController extends GrowGameController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("change");
         ArrayList<String> date = getNowDate();
         fieldAreaViewInit();
         timerInit();

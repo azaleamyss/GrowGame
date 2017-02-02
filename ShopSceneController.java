@@ -10,38 +10,38 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.Parent;
 import javafx.fxml.FXML;
+import java.util.ArrayList;
 
 public class ShopSceneController extends GrowGameController implements Initializable, ControlledScreen  {
     ScreensController myController;
 
-    @FXML
-    private ImageView productImageView;
-    @FXML
-    private Label totalCostLabel;
-    
-    @FXML private Label shopperLabel;
-    @FXML private Label nowMoneyLabel;
+    @FXML private ImageView productImageView;//商品のイメージ
+    @FXML private Label costLabel;//値段を表示
+    @FXML private Label shopperLabel;//店員の発言を表示
+    @FXML private Label storageMoneyLabel;//所持金の表示
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         shopperLabel.setText("いらっしゃいませ!");
+        costLabel.setText("0");
     }
 
-    private int getTotalCost(){
-        int total = Integer.parseInt(totalCostLabel.getText());
-        return total;
+    //ラベルに表示されている合計の値段を返す
+    private int getCost(){
+        int cost = Integer.parseInt(costLabel.getText());
+        return cost;
     }
 
     //購入時の処理
     @FXML
     private void buyButtonAction(ActionEvent event){
-        int total = getTotalCost();
+        int cost = getCost();
         int money = Integer.parseInt(storage.getStoredMoney().get(0));
-        if(total <= money){
+        if(cost <= money){
             shopperLabel.setText("ありがとうございました!");
-            money -= total;
+            money -= cost;
             storage.getStoredMoney().set(0,money+"");
-            nowMoneyLabel.setText("お金: "+money); 
+            storageMoneyLabel.setText(money+""); 
         }else{
             shopperLabel.setText("残高不足です!");
         }
@@ -77,6 +77,11 @@ public class ShopSceneController extends GrowGameController implements Initializ
         productImageView.setImage(DrinkType.SHOYU.image());
     }
 
+    @FXML
+    private void seedButtonAction(ActionEvent event){
+        productImageView.setImage(Item.SEED.image());
+    }
+
     public void setScreenParent(ScreensController screenParent){
         myController = screenParent;
     }
@@ -84,5 +89,8 @@ public class ShopSceneController extends GrowGameController implements Initializ
     @FXML
     private void goToHatake(ActionEvent event){
        myController.setScreen(GrowGame.screen1ID);
+       shopperLabel.setText("いらっしゃいませ！");
+       costLabel.setText("0");
+       productImageView.setImage(null);
     }
 }

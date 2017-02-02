@@ -11,58 +11,83 @@
 <AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShopSceneController">
     <children>
         <Button alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToHatake" prefHeight="53.0" prefWidth="98.0" text="戻る" />
-        <Button onAction="#waterButtonAction" fx:id="shop_water" alignment="CENTER" layoutX="667.0" layoutY="156.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #D4F4FA; -fx-border-color: black;" text="みず">
+        <Button onAction="#waterButtonAction" fx:id="shop_water" alignment="CENTER" layoutX="687.0" layoutY="126.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #D4F4FA; -fx-border-color: black;" text="みず">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-        <Button onAction="#teaButtonAction" fx:id="shop_tea" alignment="CENTER" layoutX="571.0" layoutY="266.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4Fa;" text="おちゃ">
+        <Button onAction="#teaButtonAction" fx:id="shop_tea" alignment="CENTER" layoutX="587.0" layoutY="126.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4Fa;" text="おちゃ">
             <font>
                 <Font name="System Bold" size="18.0" />
         </font></Button>
-        <Button onAction="#beerButtonAction" fx:id="shop_beer" alignment="CENTER" layoutX="571.0" layoutY="486.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4FA;" text="ビール">
+        <Button onAction="#beerButtonAction" fx:id="shop_beer" alignment="CENTER" layoutX="587.0" layoutY="312.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4FA;" text="ビール">
             <font>
                 <Font name="System Bold" size="18.0" />
         </font></Button>
-        <Button onAction="#colaButtonAction" fx:id="shop_coke" alignment="CENTER" layoutX="667.0" layoutY="376.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4Fa;" text="コーラ">
+        <Button onAction="#colaButtonAction" fx:id="shop_coke" alignment="CENTER" layoutX="687.0" layoutY="312.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #D4F4Fa;" text="コーラ">
             <font>
                 <Font name="System Bold" size="18.0" />
         </font></Button>
-        <Button onAction="#milkButtonAction" fx:id="shop_milk" alignment="CENTER" layoutX="571.0" layoutY="376.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="牛乳">
+        <Button onAction="#milkButtonAction" fx:id="shop_milk" alignment="CENTER" layoutX="587.0" layoutY="219.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="牛乳">
             <font>
                 <Font name="System Bold" size="18.0" />
         </font></Button>
-        <Button onAction="#shoyuButtonAction" fx:id="shop_shoyu" alignment="CENTER" layoutX="667.0" layoutY="266.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="しょうゆ">
+        <Button onAction="#shoyuButtonAction" fx:id="shop_shoyu" alignment="CENTER" layoutX="687.0" layoutY="219.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="しょうゆ">
             <font>
                 <Font name="System Bold" size="18.0" />
         </font></Button>
-        <Button onAction="#wineButtonAction" fx:id="shop_wine" alignment="CENTER" layoutX="667.0" layoutY="486.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="ワイン">
+        <Button onAction="#wineButtonAction" fx:id="shop_wine" alignment="CENTER" layoutX="687.0" layoutY="404.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-color: #CEFBC9;" text="ワイン">
             <font>
                 <Font name="System Bold" size="18.0" />
         </font></Button>
-        <ImageView fitHeight="454.0" fitWidth="525.0" layoutX="22.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="403.0" fitWidth="553.0" layoutX="23.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@image/shop.jpg" />
             </image>
         </ImageView>
-        <Label fx:id="storage_money" alignment="CENTER" layoutX="611.0" layoutY="14.0" prefHeight="53.0" prefWidth="169.0" style="-fx-border-color: black;" text="お金：">
+        <Label fx:id="storageMoneyLabel" alignment="CENTER" layoutX="602.0" layoutY="14.0" prefHeight="53.0" prefWidth="169.0" style="-fx-border-color: black;"> 
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-        <Button onAction="#seedButtonAction" fx:id="shop_tane" alignment="CENTER" layoutX="394.0" layoutY="486.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="153.0" style="-fx-border-color: black;" text="たね">
+        <Button onAction="#seedButtonAction" fx:id="shop_tane" alignment="CENTER" layoutX="515.0" layoutY="404.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="153.0" style="-fx-border-color: black;" text="たね">
             <font>
                 <Font name="System Bold" size="30.0" />
             </font>
         </Button>
-        <StackPane layoutX="24.0" layoutY="486.0" prefHeight="75.0" prefWidth="313.0" style="-fx-border-color: black;">
+
+        <StackPane layoutX="63.0" layoutY="524.0" prefHeight="75.0" prefWidth="313.0" style="-fx-border-color: black;">
+            <Label fx:id="shopperLabel" alignment="CENTER" prefHeight="81.0" prefWidth="339.0">
+                <font>
+                    <Font size="29.0" />
+                </font>
+            </Label>
+        </StackPane>
+
+        <GridPane alignment="CENTER" layoutX="395.0" layoutY="481.0" prefHeight="127.0" prefWidth="392.0" style="-fx-border-color: black;">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
             <children>
-                <Label fx:id="shopperLabel" alignment="CENTER" prefHeight="72.0" prefWidth="319.0">
+                <Label fx:id="costLabel" alignment="CENTER" prefHeight="153.0" prefWidth="130.0" style="-fx-border-color: black;" GridPane.columnIndex="1">
                     <font>
-                        <Font size="29.0" />
+                        <Font size="30.0" />
                     </font>
                 </Label>
+                <Button onAction="#buyButtonAction" fx:id="shop_buy" alignment="CENTER" mnemonicParsing="false" prefHeight="125.0" prefWidth="157.0" style="-fx-border-color: black;" text="購買" GridPane.columnIndex="2">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: black;">
+                    <ImageView fx:id="productImageView" fitHeight="119.0" fitWidth="122.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true"/>
+                </StackPane>
             </children>
-        </StackPane>
+        </GridPane>
     </children>
 </AnchorPane>

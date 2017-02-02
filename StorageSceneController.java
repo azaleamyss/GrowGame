@@ -63,6 +63,10 @@ public class StorageSceneController extends GrowGameController implements Initia
     @FXML
     private void goToHatake(ActionEvent event){
        myController.setScreen(GrowGame.screen1ID);
+       storage_none.setText("倉庫");
+       for(Label l: dispLabels){
+           l.setText("");
+       }
     }
 
     @FXML

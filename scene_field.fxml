@@ -12,19 +12,16 @@
 
 <AnchorPane id="AnchorPane" minHeight="122.0" prefHeight="620.0" prefWidth="795.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FieldSceneController">
     <children>
-        <Label fx:id="field_timer" prefHeight="90.0" prefWidth="270.0" alignment="TOP_LEFT" layoutX="100.0" layoutY="14.0"/> 
+        <Label fx:id="field_timer" alignment="TOP_LEFT" layoutX="100.0" layoutY="14.0" prefHeight="90.0" prefWidth="270.0" /> 
         <Button alignment="CENTER" layoutX="428.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToStorage" prefHeight="39.0" prefWidth="76.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 15;" text="倉庫" />
         <Button alignment="CENTER" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToShop" prefHeight="39.0" prefWidth="76.0" style="-fx-border-color: black; -fx-border-radius: 15; -fx-background-color: transparent;" text="売店" />
         <Button alignment="CENTER" layoutX="689.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToTitle" text="Title" />
-        <Button onAction="#harvestButtonAction" fx:id="harvestButton" alignment="CENTER" layoutX="673.0" layoutY="487.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="収穫">
+        <Button fx:id="harvestButton" alignment="CENTER" layoutX="673.0" layoutY="508.0" mnemonicParsing="false" onAction="#harvestButtonAction" prefHeight="90.0" prefWidth="90.0" text="収穫">
 
         </Button> 
-        <Button onAction="#pourButtonAction" fx:id="drinkButton" alignment="CENTER" layoutX="673.0" layoutY="270.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="水やり">
-            <graphic>
-                <ImageView fx:id="drinkButtonImageView"/>
-            </graphic>
+        <Button fx:id="drinkButton" alignment="CENTER" layoutX="673.0" layoutY="74.0" mnemonicParsing="false" onAction="#pourButtonAction" prefHeight="90.0" prefWidth="90.0" text="水やり">
         </Button>
-        <Button onAction="#sowButtonAction" fx:id="seedButton" alignment="CENTER" layoutX="673.0" layoutY="380.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50;" text="種まき" >
+        <Button fx:id="seedButton" alignment="CENTER" layoutX="673.0" layoutY="400.0" mnemonicParsing="false" onAction="#sowButtonAction" prefHeight="90.0" prefWidth="90.0" text="種まき">
         </Button>
         <StackPane layoutX="32.0" layoutY="119.0" prefHeight="150.0" prefWidth="200.0">
             <children>
@@ -37,10 +34,11 @@
         </StackPane>
         <GridPane fx:id="field_carrot" layoutX="163.0" layoutY="245.0" prefHeight="269.0" prefWidth="354.0">
             <children>
-                <Button onAction="#posTLButtonAction" fx:id="field_carrot1" alignment="CENTER" mnemonicParsing="false" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER">
+                <Button fx:id="field_carrot1" alignment="CENTER" mnemonicParsing="false" onAction="#posTLButtonAction" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER">
                     <graphic>
                         <StackPane prefHeight="81.0" prefWidth="95.0">
                             <children>
+
                                 <ImageView fx:id="TLImageView0" fitHeight="80.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@image/leaf.png" />
@@ -60,7 +58,7 @@
                         </StackPane>
                     </graphic>
                 </Button>
-                <Button onAction="#posTRButtonAction" fx:id="field_carrot2" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.columnIndex="1">
+                <Button fx:id="field_carrot2" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" onAction="#posTRButtonAction" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.columnIndex="1">
                     <graphic>
                         <StackPane prefHeight="81.0" prefWidth="95.0">
                             <children>
@@ -83,7 +81,7 @@
                         </StackPane>
                     </graphic>
                 </Button>
-                <Button onAction="#posCLButtonAction" fx:id="field_carrot3" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.rowIndex="1">
+                <Button fx:id="field_carrot3" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" onAction="#posCLButtonAction" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.rowIndex="1">
                     <graphic>
                         <StackPane prefHeight="81.0" prefWidth="95.0">
                             <children>
@@ -106,7 +104,7 @@
                         </StackPane>
                     </graphic>
                 </Button>
-                <Button onAction="#posCRButtonAction" fx:id="field_carrot4" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                <Button fx:id="field_carrot4" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" onAction="#posCRButtonAction" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <graphic>
                         <StackPane prefHeight="81.0" prefWidth="95.0">
                             <children>
@@ -129,7 +127,7 @@
                         </StackPane>
                     </graphic>
                 </Button>
-                <Button onAction="#posULButtonAction" fx:id="field_carrot5" alignment="CENTER" layoutX="42.0" layoutY="102.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.rowIndex="2">
+                <Button fx:id="field_carrot5" alignment="CENTER" layoutX="42.0" layoutY="102.0" mnemonicParsing="false" onAction="#posULButtonAction" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.rowIndex="2">
                     <graphic>
                         <StackPane prefHeight="81.0" prefWidth="95.0">
                             <children>
@@ -152,7 +150,7 @@
                         </StackPane>
                     </graphic>
                 </Button>
-                <Button onAction="#posURButtonAction" fx:id="field_carrot6" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                <Button fx:id="field_carrot6" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" onAction="#posURButtonAction" prefHeight="81.0" prefWidth="95.0" style="-fx-background-color: transparent;" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <graphic>
                         <StackPane prefHeight="81.0" prefWidth="95.0">
                             <children>
@@ -188,8 +186,58 @@
         </GridPane>
         <StackPane layoutX="499.0" layoutY="79.0" prefHeight="100.0" prefWidth="100.0">
             <children>
-                <ImageView fx:id="weatherImageView" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true"></ImageView>
+                <ImageView fx:id="sunImageView" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image/sun.png" />
+                </image></ImageView>
+                <ImageView fx:id="moonImageView" fitHeight="97.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image/moon.jpg" />
+                    </image>
+                </ImageView>
             </children>
         </StackPane>
+        <StackPane layoutX="673.0" layoutY="179.0" prefHeight="170.0" prefWidth="90.0" style="-fx-border-color: black;">
+            <children>
+                <VBox alignment="CENTER" prefHeight="196.0" prefWidth="88.0">
+                    <children>
+                        <Label prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: black;" text="みず">
+                            <graphic>
+                                <Button minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+                            </graphic>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="81.0" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: black;" text="おちゃ">
+                            <graphic>
+                                <Button minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+                            </graphic>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="67.0" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: black;" text="しょうゆ">
+                            <graphic>
+                                <Button minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+                            </graphic>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="54.0" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: black;" text="牛乳">
+                            <graphic>
+                                <Button minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+                            </graphic>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="40.0" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: black;" text="コーラ">
+                            <graphic>
+                                <Button minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+                            </graphic>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="27.0" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: black;" text="ビール">
+                            <graphic>
+                                <Button minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+                            </graphic>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="13.0" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: black;" text="ワイン">
+                            <graphic>
+                                <Button minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+                            </graphic>
+                        </Label>
+                    </children>
+                </VBox>
+        </children></StackPane>
     </children>
 </AnchorPane>
